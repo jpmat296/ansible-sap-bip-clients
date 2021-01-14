@@ -1,0 +1,18 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+molecule = "==3.2.*"
+python-vagrant = "*"
+ansible = "==2.10.*"
+pywinrm = "*"
+molecule-vagrant = "*"
+# Ansible-lint with fix: https://github.com/ansible-community/ansible-lint/pull/1128
+ansible-lint = {git = "https://github.com/ansible-community/ansible-lint.git", ref = "5a799ef638fc04bb04ecfd958dd7fd69da5f4892"}
+
+[requires]
+python_version = "3.8"
