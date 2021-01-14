@@ -1,0 +1,3 @@
+---
+roles:
+  - informatiquecdc.win_pending_reboot

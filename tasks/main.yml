@@ -1,0 +1,31 @@
+---
+# tasks file for sap_bip_clients
+- name: Ensure no reboot is pending
+  win_pending_reboot: {}
+  register: test_pending_reboot_result
+- name: reboot if need
+  win_reboot: {}
+  when: test_pending_reboot_result.reboot_required
+- name: Get BIP clients install files
+  win_get_url:
+    url: "{{ item }}"
+    url_username: anonymous
+    dest: C:/Users/{{ sap_bip_clients_installer_username }}/Desktop/
+    force: false
+  async: 900
+  loop: "{{ sap_bip_clients_install_urls }}"
+- name: Decompress BIP clients install files
+  block:
+    - name: Create target directory for unzip
+      win_file:
+        path: "{{ sap_bip_clients_unzip_target }}"
+        state: directory
+    - name: Unzip BIP clients install files
+      win_unzip:
+        src: "C:/Users/{{ sap_bip_clients_installer_username }}\
+              /Desktop/{{ sap_bip_clients_install_urls[0] | basename }}"
+        dest: "{{ sap_bip_clients_unzip_target }}"
+        creates: "{{ sap_bip_clients_unzip_target }}/{{ sap_bip_clients_unzipped_folder_name }}\
+                  /DATA_UNITS"
+- import_tasks: my_response_ini.yml
+- import_tasks: setup.yml

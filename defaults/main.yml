@@ -1,0 +1,11 @@
+---
+# defaults file for sap_bip_clients
+sap_bip_clients_install_urls:
+  - http://nas.matsusoft.com:5005/install_files/bo-bip-clients/42_sp08_p500_clients/51054262_1.ZIP
+sap_bip_clients_installer_username: Administrator
+
+# Target directory for unzip of install files. It is created if required.
+sap_bip_clients_unzip_target: C:/tmp/bip_clients_install
+
+# Should be found automatically
+sap_bip_clients_unzipped_folder_name: SBOP_BI_PLATFORM_4.2_SP08_CLIENT_TOOLS_WINDOWS_

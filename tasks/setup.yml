@@ -1,0 +1,27 @@
+---
+- name: Execute BIP clients installer
+  win_command: setup.exe -r ../../../my_response.ini
+  args:
+    chdir: "{{ sap_bip_clients_unzip_target }}/{{ sap_bip_clients_unzipped_folder_name }}\
+            /DATA_UNITS/BusinessObjectsClient"
+    # creates: C:/Program Files (x86)/SAP BusinessObjects/InstallData
+  async: 15000
+# - name: Find installer log directory
+#   block:
+#     - name: Find installer log directory (list)
+#       win_find:
+#         file_type: directory
+#         paths: C:\Program Files (x86)\SAP BusinessObjects\InstallData\logs\
+#       register: found_dirs
+#     - name: Find installer log directory (latest)
+#       set_fact:
+#         log_dir: "{{ found_dirs.files | sort(attribute='mtime',reverse=true) | first }}"
+#       when: not ansible_check_mode
+# - name: Ensure no error have occurred
+#   win_lineinfile:
+#     path: "{{ log_dir }}\\ErrorsAndWarnings.log"
+#     line: 'No errors are encountered '
+#   check_mode: true
+#   register: presence
+#   failed_when: presence.changed
+#   when: not ansible_check_mode
