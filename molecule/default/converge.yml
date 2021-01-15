@@ -3,5 +3,3 @@
   hosts: all
   roles:
     - role: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') | basename }}"
-  vars:
-    sap_bip_clients_installer_username: vagrant
