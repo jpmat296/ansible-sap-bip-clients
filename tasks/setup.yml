@@ -6,7 +6,7 @@
             /DATA_UNITS/BusinessObjectsClient"
     creates: "C:/Program Files (x86)/SAP BusinessObjects/SAP BusinessObjects Enterprise XI 4.0\
               /win32_x86/WebIRichClient.exe"
-  async: 15000
+  async: 1700
 # - name: Find installer log directory
 #   block:
 #     - name: Find installer log directory (list)

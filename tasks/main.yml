@@ -12,7 +12,7 @@
     url_username: anonymous
     dest: C:/Users/{{ sap_bip_clients_installer_username }}/Desktop/
     force: false
-  async: 900
+  async: 540
   loop: "{{ sap_bip_clients_install_urls }}"
 - name: Decompress BIP clients install files
   block:
@@ -27,5 +27,6 @@
         dest: "{{ sap_bip_clients_unzip_target }}"
         creates: "{{ sap_bip_clients_unzip_target }}/{{ sap_bip_clients_unzipped_folder_name }}\
                   /DATA_UNITS"
+      async: 700
 - import_tasks: my_response_ini.yml
 - import_tasks: setup.yml
